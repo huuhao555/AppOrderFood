@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import SCREENS from '..';
 
-const TableSelectionScreen = () => {
+const TableSelectionScreen = ({ navigation }) => {
   const [selectedTable, setSelectedTable] = useState(null);
+  const [tables, setTables] = useState(Array.from({ length: 20 }, (_, i) => ({
+    name: `Bàn ${i + 1}`,
+    isSelected: false,
+  })));
 
-  const tables = Array.from({ length: 20 }, (_, i) => `Bàn ${i + 1}`);
-
-  const toggleTable = (table) => {
-    setSelectedTable(table);
+  const toggleTable = (index) => {
+    const updatedTables = tables.map((table, idx) => ({
+      ...table,
+      isSelected: idx === index ? !table.isSelected : table.isSelected,
+    }));
+    setTables(updatedTables);
+    setSelectedTable(updatedTables[index]);
   };
+
+  const handleConfirm = () => {
+    if (selectedTable) {
+      navigation.navigate(SCREENS.PRODUCTLIST);
+    } else {
+      alert('Vui lòng chọn một bàn trước khi xác nhận.');
+    }
+  };
+
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -16,23 +34,24 @@ const TableSelectionScreen = () => {
       <FlatList
         data={tables}
         numColumns={2}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <TouchableOpacity
             style={[
               styles.tableButton,
-              selectedTable === item && styles.selectedTableButton
+              item.isSelected && styles.selectedTableButton
             ]}
-            onPress={() => toggleTable(item)}
+            onPress={() => toggleTable(index)}
           >
-            <Text style={styles.tableText}>{item}</Text>
+            <Text style={styles.tableText}>{item.name}</Text>
           </TouchableOpacity>
         )}
-        keyExtractor={(item) => item}
+        keyExtractor={(item) => item.name}
         contentContainerStyle={styles.tablesContainer}
       />
-      <TouchableOpacity style={styles.confirmButton}>
+      <TouchableOpacity style={styles.confirmButton} onPress={handleConfirm}>
         <Text style={styles.confirmButtonText}>Xác Nhận</Text>
       </TouchableOpacity>
+    
     </SafeAreaView>
   );
 };
@@ -62,20 +81,32 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   selectedTableButton: {
-    backgroundColor: 'lightblue',
-    borderColor: 'lightblue',
+    backgroundColor: 'lightsalmon',
+    borderColor: 'lightsalmon',
   },
   tableText: {
     fontSize: 16,
   },
   confirmButton: {
     marginTop: 20,
-    backgroundColor: 'lightblue',
+    backgroundColor: 'orange',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
   },
   confirmButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  cancelButton: {
+    marginTop: 10,
+    backgroundColor: 'red',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  cancelButtonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',

@@ -7,7 +7,7 @@ const Header = ()=>{
             <Text style={styles.title}> Nhom2day </Text>
         </View>
         <View>
-            <Image source={require('../../asset/logo.png')}/>
+            <Image source={require('../assets/images/logo.png')}/>
         </View>
     </View>  
     );
