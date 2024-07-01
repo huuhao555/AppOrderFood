@@ -5,7 +5,7 @@ const COLORS = {
   PLACEHOLDER_COLOR: '#8B8B8B',
   GRAY_LIGHT: 'lightgray',
   ORANGE: 'orange',
-  MAIN: '#76D7C4'
+  MAIN: '#FF9900'
 };
 
 export default COLORS;

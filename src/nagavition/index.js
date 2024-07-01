@@ -11,7 +11,9 @@ import ProductDetailScreen from '../screens/tabs/ProductDetailScreen';
 import PaymentScreen from '../screens/tabs/PaymentScreen';
 import HomeScreen from '../screens/tabs/HomeScreen';
 import TableSelectionScreen from '../screens/tabs/TableSelectionScreen';
+import OTPVerification from '../screens/auth/OTPVerificationScreen';
 import ProfileScreen from '../screens/tabs/ProfileScreen';
+import UpdatePasswordScreen from '../screens/auth/UpdatePasswordScreen';
 import SCREENS from '../screens';
 import IMAGES from '../assets/images';
 import { COLORS } from '../constants';
@@ -28,6 +30,8 @@ const StackNavigation = () => {
         <Stack.Screen name={SCREENS.PRODUCTDETAIL} component={ProductDetailScreen} />
         <Stack.Screen name={SCREENS.PAYMENT} component={PaymentScreen} />
         <Stack.Screen name={SCREENS.TABLESELECTION} component={TableSelectionScreen} />
+        <Stack.Screen name={SCREENS.CONFIRMEMAIL} component={OTPVerification} />
+        <Stack.Screen name={SCREENS.UPDATEPASS} component={UpdatePasswordScreen} />
       </Stack.Navigator>
   )
 }

@@ -3,6 +3,8 @@ import React from 'react'
 import StackNavigation from './src/nagavition'
 import { NavigationContainer } from '@react-navigation/native'
 import ProductDetailScreen from './src/screens/tabs/ProductDetailScreen'
+import ConfirmLoginScreen from './src/screens/auth/OTPVerificationScreen'
+import UpdatePasswordScreen from './src/screens/auth/UpdatePasswordScreen';
 
 const App = () => {
   return (

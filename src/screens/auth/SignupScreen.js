@@ -8,6 +8,7 @@ import {View} from 'react-native';
 import Foect from 'foect';
 import {Alert} from 'react-native';
 import IMAGES from '../../assets/images';
+import SCREENS from '..';
 
 const SignupScreen = props => {
   const {navigation} = props;
@@ -17,10 +18,6 @@ const SignupScreen = props => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const onSignUpPressed = async () => {
 
-  console.log("userName", userName)
-  console.log("userEmail", userEmail)
-  console.log("password", password)
-  console.log("confirmPassword", confirmPassword)
     
     if ((!userName) || (!userEmail) || (!password)) {
       alert("Vui lòng nhập đầy đủ thông tin.");
@@ -47,12 +44,13 @@ const SignupScreen = props => {
       }
       
       const data = await response.json();
-      Alert.alert('Thông báo', 'Đăng ký thành công!!')
       console.log('Register successful:', data);
+    navigation.navigate(SCREENS.CONFIRMEMAIL, { email: userEmail });
+
       setUserName('');
       setUserEmail('');
       setPassword('');
-        setConfirmPassword('');
+      setConfirmPassword('');
     } catch (error) {
       alert("Đăng ký không thành công! Vui lòng kiểm tra lại thông tin.");
     }

@@ -26,6 +26,7 @@ const HomeScreen = ({ navigation }) => {
   const renderProduct = ({ item }) => (
       
     <TouchableOpacity onPress={() => navigateToProductDetail(item)}>
+      <Text></Text>
       <View style={styles.productContainer}>
         <View style={styles.productInfo}>
           <Image style={styles.productImage} source={{ uri: `${item.Image}` }} />
